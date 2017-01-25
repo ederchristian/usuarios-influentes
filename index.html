@@ -5,12 +5,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Usuários Influentes</title>
 	<meta name="description" content="Aplicação para entender melhor o perfil dos usuários influentes em diferentes setores.">
-	<link rel="canonical" href="Link único da página">
 	<meta name="author" content="Nome do autor do site">
+	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-	<header>
+	<header class="twelve columns">
 		<img src="img/logo-gauge.png">
+		<hr>
 	</header>
 
 	<section class="infos">
@@ -22,15 +23,15 @@
 
 	<section class="data">
 		<div>
-			<label for="brand">Marca</label>
-				<select id="brand">
-					<option value="1">Ambev</option>
-					<option value="2">Nike</option>
-					<option value="3">Honda</option>
-					<option value="4">Oi</option>
-					<option value="5">Itaú</option>
-				</select>
-			</div>
+			<select id="brand">
+				<option value="0">Selecione uma marca...</option>
+				<option value="1">Ambev</option>
+				<option value="2">Nike</option>
+				<option value="3">Honda</option>
+				<option value="4">Oi</option>
+				<option value="5">Itaú</option>
+			</select>
+		</div>
 	</section>
 </body>
 </html>
