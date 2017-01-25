@@ -119,3 +119,29 @@ hr {
 	text-align: center;
 	padding-top: 3rem;
 }
+
+/* Filter */
+select {
+	height: 3rem;
+	background-color: #fff;
+	border: 1px solid #d1d1d1;
+	border-radius: 2px;
+	box-shadow: none;
+	font: inherit;
+	margin-bottom: 3rem;
+}
+
+select:focus {
+	border: 1px solid #33c3f0;
+}
+
+/* Footer */
+footer p {
+	text-align: center;
+	font-size: 1rem;
+	position: absolute;
+  	right: 0;
+  	bottom: 0;
+  	left: 0;
+  	color: #333;
+}
