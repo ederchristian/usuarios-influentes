@@ -135,6 +135,11 @@ select:focus {
 	border: 1px solid #33c3f0;
 }
 
+/* Texts */
+#or {
+	padding-bottom: 3rem;
+}
+
 /* Footer */
 footer p {
 	text-align: center;
