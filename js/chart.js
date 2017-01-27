@@ -1,10 +1,8 @@
 // Objects (JSON)
-
 var objBrands = {
     "brand": [
         {"id": 1, "name": "Ambev", "image": "http://www.gauge.com.br/wp-content/uploads/2014/12/ambev.png"},
         {"id": 2, "name": "Nike", "image": "http://www.gauge.com.br/wp-content/uploads/2014/12/nike.png"},
-        {"id": 3, "name": "Honda", "image": "http://www.gauge.com.br/wp-content/uploads/2014/12/honda.png"},
         {"id": 3, "name": "Honda", "image": "http://www.gauge.com.br/wp-content/uploads/2014/12/honda.png"},
         {"id": 4, "name": "Oi", "image": "http://www.gauge.com.br/wp-content/uploads/2014/12/oi.png"},
         {"id": 5, "name": "Itaú", "image": "http://www.gauge.com.br/wp-content/uploads/2014/12/itau.png"}
@@ -325,7 +323,6 @@ var objUsers = {
 };
 
 /* Getting datas */
-
 function getCount(id) {
     var count = 0;
     for (var i = 0; i < objBrands.brand.length; i++) {
@@ -375,30 +372,32 @@ function getInteractionsByBrandForFavorite(brand) {
 // alert(getInteractionsByBrandForFavorite(4));
 
 /* Google Charts */
-
 google.charts.load('current', {'packages':['bar']});
-google.charts.setOnLoadCallback(drawStuff);
+google.charts.setOnLoadCallback(drawBrandChart);
 
-function drawStuff() {
+function drawBrandChart() {
     var data = new google.visualization.arrayToDataTable([
-        ['Ações', 'Quantidade'],
-        ["Comentários", getInteractionsByBrandForComment(1)],
-        ["Compartilhamentos", getInteractionsByBrandForShare(1)],
-        ["Favoritos", getInteractionsByBrandForFavorite(1)]
+        ['Ações', 'Quantidade', { role: 'style' }],
+        ["Comentários", getInteractionsByBrandForComment($( "#brand" ).val()), 'color: #00b2e3'],
+        ["Compartilhamentos", getInteractionsByBrandForShare($( "#brand" ).val()), 'color: #00b2e3'],
+        ["Favoritos", getInteractionsByBrandForFavorite($( "#brand" ).val()), 'color: #00b2e3']
     ]);
 
     var options = {
-        width: 900,
         legend: { position: 'none' },
         axes: {
             x: {
-                0: { side: 'top', label: 'White to move'} // Top x-axis.
+                0: { side: 'top', label: 'Gráfico relacionado às marcas'} // Top x-axis.
             }
         },
-        bar: { groupWidth: "90%" }
+        bar: { groupWidth: "60%" }
     };
 
     var chart = new google.charts.Bar(document.getElementById('brand-charts'));
     // Convert the Classic options to Material options.
     chart.draw(data, google.charts.Bar.convertOptions(options));
 };
+
+$(window).resize(function(){
+  drawBrandChart();
+});
