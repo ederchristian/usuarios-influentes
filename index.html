@@ -23,17 +23,17 @@
 
 	<section class="data twelve columnss">
 		<div>
-			<select id="brand">
-				<option value="0">Selecione uma marca...</option>
-				<option value="1">Ambev</option>
-				<option value="2">Nike</option>
-				<option value="3">Honda</option>
-				<option value="4">Oi</option>
-				<option value="5">Itaú</option>
+			<select id="brand" onchange="drawBrandChart()">
+				<option value="0" id="select-title">Selecione uma marca...</option>
+				<option value="1" id="ambev">Ambev</option>
+				<option value="2" id="nike">Nike</option>
+				<option value="3" id="honda">Honda</option>
+				<option value="4" id="oi">Oi</option>
+				<option value="5" id="itau">Itaú</option>
 			</select>
 		</div>
 
-		<div id="brand-charts">
+		<div id="brand-charts" class="col-md-12">
 				
 		</div>
 
@@ -41,10 +41,10 @@
 
 		<div>
 			<select id="type">
-				<option value="0">Selecione uma interação...</option>
-				<option value="6">Comentar</option>
-				<option value="7">Compartilhar</option>
-				<option value="8">Favoritar</option>
+				<option value="0" id="select-title">Selecione uma interação...</option>
+				<option value="6" id="comment">Comentar</option>
+				<option value="7" id="share">Compartilhar</option>
+				<option value="8" id="favorite">Favoritar</option>
 			</select>
 		</div>
 
