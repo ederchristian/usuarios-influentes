@@ -336,7 +336,7 @@ function getCount(id) {
     return count;
 }
 
-alert(getCount(3));
+// alert(getCount(3));
 
 function getInteractionsByBrandForComment(brand) {
     var countComments = 0;
@@ -348,7 +348,7 @@ function getInteractionsByBrandForComment(brand) {
     return countComments;
 }
 
-alert(getInteractionsByBrandForComment(4));
+// alert(getInteractionsByBrandForComment(4));
 
 function getInteractionsByBrandForShare(brand) {
     var countShares = 0;
@@ -360,7 +360,7 @@ function getInteractionsByBrandForShare(brand) {
     return countShares;
 }
 
-alert(getInteractionsByBrandForShare(4));
+// alert(getInteractionsByBrandForShare(4));
 
 function getInteractionsByBrandForFavorite(brand) {
     var countFavorites = 0;
@@ -372,4 +372,33 @@ function getInteractionsByBrandForFavorite(brand) {
     return countFavorites;
 }
 
-alert(getInteractionsByBrandForFavorite(4));
+// alert(getInteractionsByBrandForFavorite(4));
+
+/* Google Charts */
+
+google.charts.load('current', {'packages':['bar']});
+google.charts.setOnLoadCallback(drawStuff);
+
+function drawStuff() {
+    var data = new google.visualization.arrayToDataTable([
+        ['Ações', 'Quantidade'],
+        ["Comentários", getInteractionsByBrandForComment(5)],
+        ["Compartilhamentos", getInteractionsByBrandForShare(5)],
+        ["Favoritos", getInteractionsByBrandForFavorite(5)]
+    ]);
+
+    var options = {
+        width: 900,
+        legend: { position: 'none' },
+        axes: {
+            x: {
+                0: { side: 'top', label: 'White to move'} // Top x-axis.
+            }
+        },
+        bar: { groupWidth: "90%" }
+    };
+
+    var chart = new google.charts.Bar(document.getElementById('brand-charts'));
+    // Convert the Classic options to Material options.
+    chart.draw(data, google.charts.Bar.convertOptions(options));
+};
