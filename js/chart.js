@@ -401,3 +401,4 @@ function drawBrandChart() {
 $(window).resize(function(){
   drawBrandChart();
 });
+
