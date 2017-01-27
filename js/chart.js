@@ -382,9 +382,9 @@ google.charts.setOnLoadCallback(drawStuff);
 function drawStuff() {
     var data = new google.visualization.arrayToDataTable([
         ['Ações', 'Quantidade'],
-        ["Comentários", getInteractionsByBrandForComment(5)],
-        ["Compartilhamentos", getInteractionsByBrandForShare(5)],
-        ["Favoritos", getInteractionsByBrandForFavorite(5)]
+        ["Comentários", getInteractionsByBrandForComment(1)],
+        ["Compartilhamentos", getInteractionsByBrandForShare(1)],
+        ["Favoritos", getInteractionsByBrandForFavorite(1)]
     ]);
 
     var options = {
