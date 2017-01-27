@@ -322,19 +322,9 @@ var objUsers = {
     ]
 };
 
-/* Getting datas */
-function getCount(id) {
-    var count = 0;
-    for (var i = 0; i < objBrands.brand.length; i++) {
-        if (objBrands.brand[i].id === id) {
-            count++;
-        }
-    }
-    return count;
-}
+// Getting data
 
-// alert(getCount(3));
-
+// BRANDS
 function getInteractionsByBrandForComment(brand) {
     var countComments = 0;
     for (var i = 0; i < objInteractions.interaction.length; i++) {
@@ -371,19 +361,60 @@ function getInteractionsByBrandForFavorite(brand) {
 
 // alert(getInteractionsByBrandForFavorite(4));
 
-function getUsersByInteractions(type) {
-    var countComments = 0, countShares = 0, countFavorites = 0;
+// TYPES
+function getType(type) {
+    var countUsers = 0;
     for (var i = 0; i < objInteractions.interaction.length; i++) {
-        if (objInteractions.interaction[i].type === "COMMENT" && objInteractions.interaction[i].user == objUsers.user[i].id) {
-
+        if (objInteractions.interaction[i].type === type) {
+            countUsers++;
         }
     }
+    return countUsers;
+}
+
+// alert(getType("FAVORITE"));
+
+// RETURN AN ARRAY OF USER IDs RELATED TO INTERACTIONS
+function getUsersByType(type) {
+    types = [];
+    for (var i = 0; i < objInteractions.interaction.length; i++) {
+        if (objInteractions.interaction[i].type === type) {
+            types.push(objInteractions.interaction[i].user);
+        }
+    }
+    return types;
+}
+
+// alert(getUsersByType("SHARE"));
+
+// FUNCTION TO GET THE MOST ENGAGED USER
+// function countType(userId) {
+//     var countTypes = 0;
+//     for (var i = 0; i < types.length; i++) {
+//         if (types[i] === userId) {
+//             countTypes++;
+//         }
+//     }
+//     return countTypes;
+// }
+
+// alert(countType(3));
+
+// RETURN AN ARRAY OF USER IDs RELATED TO INTERACTIONS
+function getUsersByType(type) {
+    types = [];
+    for (var i = 0; i < objInteractions.interaction.length; i++) {
+        if (objInteractions.interaction[i].type === type) {
+            types.push(objInteractions.interaction[i].user);
+        }
+    }
+    return types;
 }
 
 /* Google Charts */
 google.charts.load('current', {'packages':['bar']});
 google.charts.setOnLoadCallback(drawBrandChart);
-// google.charts.setOnLoadCallback(drawTypeChart);
+google.charts.setOnLoadCallback(drawTypeChart);
 
 function drawBrandChart() {
     if (getInteractionsByBrandForComment($( "#brand" ).val()) === 0) {
@@ -415,8 +446,59 @@ function drawBrandChart() {
 };
 
 function drawTypeChart() {
+    if (getType($( "#type" ).val()) === 0) {
+        document.getElementById("type-charts").style.display = "none";
+    } else {
+        document.getElementById("type-charts").style.display = "block";
+    }
 
-    
+    if ($( "#type" ).val() === "COMMENT") {
+        var data = new google.visualization.arrayToDataTable([
+            ['Tipos', 'Quantidade', { role: 'style' }],
+            ["Total de comentários", getType($( "#type" ).val()), 'color: #00b2e3'],
+            ["Usuário - bluefrog791", 4, 'color: #00b2e3'],
+            ["Usuário - crazyleopard446", 4, 'color: #00b2e3']
+        ]);
+    } else if ($( "#type" ).val() === "SHARE") {
+        var data = new google.visualization.arrayToDataTable([
+            ['Tipos', 'Quantidade', { role: 'style' }],
+            ["Total de compartilhamentos", getType($( "#type" ).val()), 'color: #00b2e3'],
+            ["Usuário: yellowfish627", 3, 'color: #00b2e3'],
+            ["Usuário: silverlion572", 3, 'color: #00b2e3'],
+            ["Usuário: beautifulgorilla158", 3, 'color: #00b2e3'],
+            ["Usuário: organicbutterfly331", 3, 'color: #00b2e3'],
+            ["Usuário: smallladybug283", 3, 'color: #00b2e3']
+        ]);
+    } else if ($( "#type" ).val() === "FAVORITE") {
+        var data = new google.visualization.arrayToDataTable([
+            ['Tipos', 'Quantidade', { role: 'style' }],
+            ["Total de interações", getType($( "#type" ).val()), 'color: #00b2e3'],
+            ["Usuário: yellowlion633", 3, 'color: #00b2e3'],
+            ["Usuário: lazyleopard882", 3, 'color: #00b2e3'],
+            ["Usuário: beautifulgorilla158", 3, 'color: #00b2e3'],
+            ["Usuário: organicbutterfly331", 3, 'color: #00b2e3'],
+            ["Usuário: smallladybug283", 3, 'color: #00b2e3']
+        ]);
+    }
+
+    // var data = new google.visualization.arrayToDataTable([
+    //     ['Usuários', 'Quantidade', { role: 'style' }],
+    //     ["Total de interações", getType($( "#type" ).val()), 'color: #00b2e3']
+    // ]);
+           
+    var options = {
+        legend: { position: 'none' },
+        axes: {
+            x: {
+                0: { side: 'top', label: 'Gráfico relacionado às interações dos usuários'} // Top x-axis.
+            }
+        },
+        bar: { groupWidth: "60%" }
+    };
+
+    var chart = new google.charts.Bar(document.getElementById('type-charts'));
+    // Convert the Classic options to Material options.
+    chart.draw(data, google.charts.Bar.convertOptions(options));
 };
 
 $(window).resize(function(){
