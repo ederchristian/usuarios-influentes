@@ -371,11 +371,27 @@ function getInteractionsByBrandForFavorite(brand) {
 
 // alert(getInteractionsByBrandForFavorite(4));
 
+function getUsersByInteractions(type) {
+    var countComments = 0, countShares = 0, countFavorites = 0;
+    for (var i = 0; i < objInteractions.interaction.length; i++) {
+        if (objInteractions.interaction[i].type === "COMMENT" && objInteractions.interaction[i].user == objUsers.user[i].id) {
+
+        }
+    }
+}
+
 /* Google Charts */
 google.charts.load('current', {'packages':['bar']});
 google.charts.setOnLoadCallback(drawBrandChart);
+// google.charts.setOnLoadCallback(drawTypeChart);
 
 function drawBrandChart() {
+    if (getInteractionsByBrandForComment($( "#brand" ).val()) === 0) {
+        document.getElementById("brand-charts").style.display = "none";
+    } else {
+        document.getElementById("brand-charts").style.display = "block";
+    }
+
     var data = new google.visualization.arrayToDataTable([
         ['Ações', 'Quantidade', { role: 'style' }],
         ["Comentários", getInteractionsByBrandForComment($( "#brand" ).val()), 'color: #00b2e3'],
@@ -387,7 +403,7 @@ function drawBrandChart() {
         legend: { position: 'none' },
         axes: {
             x: {
-                0: { side: 'top', label: 'Gráfico relacionado às marcas'} // Top x-axis.
+                0: { side: 'top', label: 'Gráfico relacionado às interações de usuários referentes às marcas'} // Top x-axis.
             }
         },
         bar: { groupWidth: "60%" }
@@ -398,7 +414,13 @@ function drawBrandChart() {
     chart.draw(data, google.charts.Bar.convertOptions(options));
 };
 
+function drawTypeChart() {
+
+    
+};
+
 $(window).resize(function(){
   drawBrandChart();
+  drawTypeChart();
 });
 
