@@ -2,8 +2,6 @@
 
 Este webapp visa entender melhor o perfil de usuários influentes em diferentes setores.
 
-[Link do webapp]
-
 ### Utilizando o Apache
 
 * [Faça o download] ou instale:
@@ -36,6 +34,5 @@ Este webapp visa entender melhor o perfil de usuários influentes em diferentes 
 
     Trocar "username" pelo nome do usuário da máquina.
 
-[Link do webapp]: <http://ederchristian.com/usuarios-influentes>
 [Faça o download]: <https://www.apache.org/dyn/closer.cgi>
 [No Windows]: <https://httpd.apache.org/docs/2.4/platform/windows.html>
